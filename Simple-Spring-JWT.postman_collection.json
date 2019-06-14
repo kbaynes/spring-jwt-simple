@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "c9d4dc44-c146-4cae-9b41-a896b75050bb",
+		"name": "Simple-Spring-JWT",
+		"description": "Calls to exercise the Simple Spring JWT project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\":\"Joe\",\n\"username\":\"Joe\",\n\"email\":\"email@server.com\",\n\"role\":[\"user\",\"admin\"],\n\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/signup",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login as  Owner",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f29fde4b-dc10-43ca-8b9f-8af13b7a01c9",
+						"exec": [
+							"\t\r",
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"accessToken\", data.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n\t\"username\":\"owner\",\n\t\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/authenticate",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Admin Access",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/test/admin",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login as Admin",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f29fde4b-dc10-43ca-8b9f-8af13b7a01c9",
+						"exec": [
+							"\t\r",
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"accessToken\", data.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"admin\",\n\t\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/authenticate",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login as User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f29fde4b-dc10-43ca-8b9f-8af13b7a01c9",
+						"exec": [
+							"\t\r",
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"accessToken\", data.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"user\",\n\t\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/authenticate",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test User Access",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/test/user",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login as Customer",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f29fde4b-dc10-43ca-8b9f-8af13b7a01c9",
+						"exec": [
+							"\t\r",
+							"var data = JSON.parse(responseBody);\r",
+							"postman.setEnvironmentVariable(\"accessToken\", data.accessToken);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "charset",
+						"value": "utf-8",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\":\"customer\",\n\t\"password\":\"123456\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/api/auth/authenticate",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"authenticate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test Customer Access",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "Bearer {{accessToken}}"
+					}
+				],
+				"url": {
+					"raw": "{{host}}/api/test/customer",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"test",
+						"customer"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
