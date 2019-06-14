@@ -20,7 +20,7 @@ The *Login As Owner* and *Login As Admin* requests should then allow calls to su
 
 ## H2 Database
 
-When the application runs, it start an H2 in memory database, which is accessible at http://localhost:8080/h2-console. Login using the following settings:
+When the application runs, it starts an H2 in memory database, which is accessible at http://localhost:8080/h2-console. Login using the following settings:
 Driver Class = org.h2.Driver
 JDBC URL = jdbc:h2:mem:testdb
 User Name = sa
@@ -28,19 +28,5 @@ Password = <blank>
 
 For this console to work properly, the WebSecurityConfig class contains the line: *http.headers().frameOptions().disable();*. This line should be removed in production.
 
-The tables are then searchable and updateable.
-
-The tables are initially populated using the Spring Boot mechanism of the *<app-root>/src/main/resources/import.sql* file, which is automatically run on application startup. Internal to the application, data is accessed via JPA/Hibernate in the Role and User classes.
-
-## Authentication
-
-
-http://localhost:8080/login
-
-http://localhost:8080/logout
-
-http://localhost:8080/public
-
-http://localhost:8080/admin
-
+The tables are populated using the Spring Boot mechanism of the *<app-root>/src/main/resources/import.sql* file, which is automatically run on application startup. Internal to the application, data is accessed via JPA/Hibernate in the Role and User classes.
 
